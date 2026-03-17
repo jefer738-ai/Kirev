@@ -52,7 +52,7 @@
         .dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; animation: pulse 1.5s infinite; }
         @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(1.2); } }
 
-        /* --- PLANES (ESTILO TACHADO) --- */
+        /* --- PLANES --- */
         .section-title { text-align: center; font-size: 2.2rem; margin-bottom: 40px; padding: 0 5%; }
         .section-title span { color: var(--accent); }
         .plans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; padding: 0 5% 60px; max-width: 1200px; margin: 0 auto; }
@@ -72,10 +72,17 @@
         .not-included::before { content: "✕"; color: #ff4d4d; font-weight: bold; width: 15px; }
         .included::before { content: "✓"; color: var(--accent); font-weight: bold; width: 15px; }
 
-        /* --- SECCIÓN DEMO AGENDA --- */
-        .demo-agenda { background: linear-gradient(180deg, var(--bg-dark), #0f172a); padding: 80px 5%; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
+        /* --- SECCIÓN GOOGLE CALENDAR (NUEVA) --- */
+        .calendar-section { padding: 60px 5%; text-align: center; }
+        .calendar-container {
+            width: 100%; max-width: 900px; margin: 0 auto;
+            height: 600px; border-radius: 20px; overflow: hidden;
+            border: 1px solid var(--accent); box-shadow: 0 0 30px rgba(0, 240, 255, 0.15);
+            background: white;
+        }
+        iframe { width: 100%; height: 100%; border: none; }
 
-        /* --- BENEFICIOS (ULTIMA SECCIÓN) --- */
+        /* --- BENEFICIOS --- */
         .benefits { padding: 80px 5%; background: var(--bg-dark); }
         .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; max-width: 1100px; margin: 0 auto; }
         .benefit-card { 
@@ -91,14 +98,29 @@
         .btn-accent { background: var(--accent); color: #000; box-shadow: 0 4px 20px var(--accent-glow); }
         .btn:hover { transform: scale(1.05); filter: brightness(1.1); }
 
-        /* --- FLOTANTES --- */
-        .float-wa { position: fixed; bottom: 20px; right: 20px; width: 60px; z-index: 1000; transition: 0.3s; }
+        /* --- FLOTANTES (CORREGIDOS) --- */
+        .float-wa { 
+            position: fixed; bottom: 20px; right: 20px; 
+            width: 60px; height: 60px; z-index: 1001; 
+            transition: 0.3s; display: block;
+        }
+        .float-wa img { width: 100%; height: 100%; display: block; }
         .float-wa:hover { transform: scale(1.1) rotate(5deg); }
-        .float-up { position: fixed; bottom: 95px; right: 27px; background: var(--bg-card); width: 45px; height: 45px; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; border: 1px solid var(--accent); opacity: 0; transition: 0.3s; z-index: 999; color: var(--accent); font-weight: bold; }
+
+        .float-up { 
+            position: fixed; bottom: 95px; right: 27px; 
+            background: var(--bg-card); width: 45px; height: 45px; 
+            border-radius: 50%; display: flex; justify-content: center; 
+            align-items: center; cursor: pointer; border: 1px solid var(--accent); 
+            opacity: 0; transition: 0.3s; z-index: 1000; color: var(--accent); 
+            font-weight: bold; pointer-events: none;
+        }
+        .float-up.visible { opacity: 1; pointer-events: auto; }
 
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.2rem; }
             .plans-grid { grid-template-columns: 1fr; }
+            .calendar-container { height: 500px; }
         }
     </style>
 </head>
@@ -126,7 +148,6 @@
     <section class="reveal">
         <h2 class="section-title" data-i18n="plans-title">Nuestros <span>Planes</span></h2>
         <div class="plans-grid">
-            
             <div class="plan-card">
                 <h3 data-i18n="plan1-title">Plan Presencia</h3>
                 <div class="plan-price">$500.000 COP</div>
@@ -178,10 +199,11 @@
         </div>
     </section>
 
-    <section class="demo-agenda reveal">
+    <section class="calendar-section reveal">
         <h2 class="section-title" data-i18n="agenda-title">Mira cómo funciona tu agenda online</h2>
-        <p style="color: var(--silver); margin-bottom: 30px;" data-i18n="agenda-p">Tus clientes eligen fecha, hora y servicio sin que tengas que intervenir.</p>
-        <a href="#" class="btn btn-accent" data-i18n="agenda-btn">Ver ejemplo de agenda</a>
+        <div class="calendar-container">
+            <iframe src="https://calendar.app.google/8r6NQYq6TGdeZMna8" loading="lazy"></iframe>
+        </div>
     </section>
 
     <section class="benefits reveal">
@@ -215,8 +237,8 @@
         <a href="https://wa.me/573105169501" class="btn btn-accent" style="padding: 18px 45px; font-size: 1.2rem;" data-i18n="cta-btn">Hablar por WhatsApp</a>
     </section>
 
-    <a href="https://wa.me/573105169501" target="_blank" class="float-wa">
-        <img src="https://static.vecteezy.com/system/resources/previews/018/930/564/non_2x/whatsapp-logo-whatsapp-icon-whatsapp-transparent-free-png.png" alt="WA">
+    <a href="https://wa.me/573105169501" target="_blank" class="float-wa" id="wa-btn">
+        <img src="https://static.vecteezy.com/system/resources/previews/018/930/564/non_2x/whatsapp-logo-whatsapp-icon-whatsapp-transparent-free-png.png" alt="WhatsApp">
     </a>
     <div class="float-up" id="btn-up" onclick="window.scrollTo({top:0, behavior:'smooth'})">↑</div>
 
@@ -229,13 +251,8 @@
                 "hero-btn": "Solicitar mi página ahora",
                 "plans-title": "Nuestros <span>Planes</span>",
                 "plan-badge": "MÁS RECOMENDADO",
-                "plan1-title": "Plan Presencia",
-                "plan2-title": "Plan Crecimiento",
-                "plan3-title": "Plan Pro",
                 "plan-btn": "Solicitar",
                 "agenda-title": "Mira cómo funciona tu agenda online",
-                "agenda-p": "Tus clientes eligen fecha, hora y servicio sin que tengas que intervenir.",
-                "agenda-btn": "Ver ejemplo de agenda",
                 "benefits-title": "¿Por qué <span>Elegirnos?</span>",
                 "ben-1": "Agenda Virtual", "ben-1-d": "Tus clientes agendan citas mientras tú descansas.",
                 "ben-2": "Diseño Premium", "ben-2-d": "Estética futurista que transmite confianza total.",
@@ -251,13 +268,8 @@
                 "hero-btn": "Request my website now",
                 "plans-title": "Our <span>Plans</span>",
                 "plan-badge": "MOST RECOMMENDED",
-                "plan1-title": "Presence Plan",
-                "plan2-title": "Growth Plan",
-                "plan3-title": "Pro Plan",
                 "plan-btn": "Request",
                 "agenda-title": "See how your online booking works",
-                "agenda-p": "Your clients choose date, time, and service without you lifting a finger.",
-                "agenda-btn": "View booking example",
                 "benefits-title": "Why <span>Choose Us?</span>",
                 "ben-1": "Virtual Booking", "ben-1-d": "Your clients book appointments while you sleep.",
                 "ben-2": "Premium Design", "ben-2-d": "Futuristic aesthetics that transmit total trust.",
@@ -273,17 +285,12 @@
                 "hero-btn": "Solicitar meu site agora",
                 "plans-title": "Nossos <span>Planos</span>",
                 "plan-badge": "MAIS RECOMENDADO",
-                "plan1-title": "Plano Presença",
-                "plan2-title": "Plano Crescimento",
-                "plan3-title": "Plano Pro",
                 "plan-btn": "Solicitar",
                 "agenda-title": "Veja como funciona o agendamento online",
-                "agenda-p": "Seus clientes escolhem data, hora e serviço sem que você precise intervir.",
-                "agenda-btn": "Ver exemplo de agenda",
                 "benefits-title": "Por que <span>Escolher-nos?</span>",
                 "ben-1": "Agenda Virtual", "ben-1-d": "Seus clientes agendam enquanto você descansa.",
                 "ben-2": "Design Premium", "ben-2-d": "Estética futurista que transmite confiança total.",
-                "ben-3": "Entrega Veloz", "ben-3-d": "Digitalizamos seu negócio em tempo recorde.",
+                "ben-3": "Entrega Veloz", "ben-3-d": "Digitalizamos seu negocio em tempo recorde.",
                 "ben-4": "Conversão Real", "ben-4-d": "Não é apenas um site bonito, é uma máquina de vendas.",
                 "cta-title": "Pronto para escalar seu negócio?",
                 "cta-btn": "Falar no WhatsApp"
@@ -298,21 +305,21 @@
             document.documentElement.lang = lang;
         }
 
-        // --- OBSERVAR SCROLL PARA REVELAR ---
-        const observerOptions = { threshold: 0.15 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
+                if (entry.isIntersecting) entry.target.classList.add('active');
             });
-        }, observerOptions);
+        }, { threshold: 0.15 });
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        // --- BOTÓN SUBIR ---
         window.onscroll = () => {
-            document.getElementById('btn-up').style.opacity = window.scrollY > 500 ? "1" : "0";
+            const upBtn = document.getElementById('btn-up');
+            if (window.scrollY > 500) {
+                upBtn.classList.add('visible');
+            } else {
+                upBtn.classList.remove('visible');
+            }
         };
     </script>
 </body>
