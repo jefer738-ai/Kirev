@@ -15,17 +15,17 @@
             --silver: #e0e6ed;
             --text-light: #f3f4f6;
             --text-muted: #6b7280;
-            --glass-bg: rgba(7, 11, 20, 0.85);
+            --glass-bg: rgba(7, 11, 20, 0.9);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-        body { font-family: system-ui, -apple-system, sans-serif; background-color: var(--bg-dark); color: var(--text-light); line-height: 1.4; overflow-x: hidden; }
+        body { font-family: system-ui, -apple-system, sans-serif; background-color: var(--bg-dark); color: var(--text-light); line-height: 1.5; overflow-x: hidden; }
         
-        /* Animaciones */
-        .reveal { opacity: 0; transform: translateY(20px); transition: all 0.6s ease-out; }
+        /* --- ANIMACIONES DE SCROLL --- */
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.2, 1, 0.3, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* Header */
+        /* --- HEADER --- */
         header {
             position: fixed; top: 0; width: 100%; padding: 12px 5%;
             display: flex; justify-content: space-between; align-items: center;
@@ -33,66 +33,71 @@
             border-bottom: 1px solid rgba(255,255,255,0.08); z-index: 1000;
         }
         .logo { font-size: 1.1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
-        .logo span { color: var(--accent); }
+        .logo span { color: var(--accent); text-shadow: 0 0 10px var(--accent-glow); }
 
-        /* Hero */
+        /* --- HERO --- */
         .hero {
-            min-height: 85vh; display: flex; flex-direction: column; justify-content: center;
-            align-items: center; text-align: center; padding: 80px 5% 40px;
-            background: radial-gradient(circle at 50% 50%, rgba(74, 144, 226, 0.1) 0%, var(--bg-dark) 80%);
+            min-height: 80vh; display: flex; flex-direction: column; justify-content: center;
+            align-items: center; text-align: center; padding: 100px 5% 40px;
+            background: radial-gradient(circle at 50% 50%, rgba(74, 144, 226, 0.12) 0%, var(--bg-dark) 75%);
         }
-        .hero h1 { font-size: 2.8rem; margin-bottom: 15px; background: linear-gradient(to right, #fff, var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; max-width: 900px; line-height: 1.1; }
-        .hero p { font-size: 1.1rem; color: var(--silver); margin-bottom: 30px; max-width: 650px; }
+        .hero h1 { font-size: 3rem; margin-bottom: 15px; background: linear-gradient(to right, #fff, var(--accent), #fff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; max-width: 900px; line-height: 1.1; }
+        .hero p { font-size: 1.2rem; color: var(--silver); margin-bottom: 30px; max-width: 700px; opacity: 0.9; }
 
-        /* Agenda Preview (Creativo) */
-        .agenda-preview {
-            background: rgba(255,255,255,0.03); border: 1px solid var(--accent);
-            padding: 15px; border-radius: 15px; margin-bottom: 20px;
-            box-shadow: 0 0 20px var(--accent-glow); display: flex; gap: 10px; align-items: center;
+        .agenda-badge {
+            background: rgba(0, 240, 255, 0.1); border: 1px solid var(--accent);
+            padding: 8px 18px; border-radius: 30px; margin-bottom: 25px;
+            box-shadow: 0 0 15px var(--accent-glow); display: flex; align-items: center; gap: 10px;
         }
-        .calendar-dot { width: 10px; height: 10px; background: var(--accent); border-radius: 50%; animation: pulse 1.5s infinite; }
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+        .dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; animation: pulse 1.5s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(1.2); } }
 
-        /* Beneficios */
-        .benefits { padding: 40px 5%; }
-        .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
-        .benefit-card { 
-            background: var(--bg-card); padding: 25px; border-radius: 15px; text-align: center;
-            border: 1px solid rgba(255,255,255,0.05); transition: 0.3s;
-        }
-        .benefit-card:hover { transform: scale(1.05); border-color: var(--accent); box-shadow: 0 0 15px var(--accent-glow); }
-        .benefit-card span { font-size: 2.5rem; display: block; margin-bottom: 10px; }
-
-        /* Planes */
-        .section-title { text-align: center; font-size: 2.2rem; margin-bottom: 40px; }
-        .plans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; padding-bottom: 50px; }
-        .plan-card { 
-            background: var(--bg-card); border-radius: 20px; padding: 30px 20px; border: 1px solid rgba(255,255,255,0.05);
-            display: flex; flex-direction: column; position: relative;
-        }
-        .plan-card.pro { border: 2px solid var(--accent); transform: scale(1.02); box-shadow: 0 0 30px rgba(0, 240, 255, 0.15); }
-        .badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--accent); color: #000; padding: 4px 15px; border-radius: 20px; font-weight: bold; font-size: 0.8rem; }
+        /* --- PLANES (ESTILO TACHADO) --- */
+        .section-title { text-align: center; font-size: 2.2rem; margin-bottom: 40px; padding: 0 5%; }
+        .section-title span { color: var(--accent); }
+        .plans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; padding: 0 5% 60px; max-width: 1200px; margin: 0 auto; }
         
-        .plan-price { font-size: 2rem; font-weight: 800; margin: 15px 0; color: #fff; }
-        .plan-features { list-style: none; margin-bottom: 25px; flex-grow: 1; }
-        .plan-features li { padding: 8px 0; font-size: 0.85rem; border-bottom: 1px solid rgba(255,255,255,0.03); display: flex; align-items: center; gap: 8px; }
-        .not-included { color: var(--text-muted); text-decoration: line-through; opacity: 0.5; }
-        .not-included::before { content: "✕"; color: #ff4d4d; font-weight: bold; }
-        .included::before { content: "✓"; color: var(--accent); font-weight: bold; }
+        .plan-card { 
+            background: var(--bg-card); border-radius: 20px; padding: 40px 25px; border: 1px solid rgba(255,255,255,0.05);
+            display: flex; flex-direction: column; position: relative; transition: 0.4s;
+        }
+        .plan-card:hover { transform: translateY(-10px); border-color: var(--primary); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .plan-card.pro { border: 2px solid var(--accent); box-shadow: 0 0 25px rgba(0, 240, 255, 0.2); }
+        .badge { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--accent); color: #000; padding: 5px 20px; border-radius: 20px; font-weight: 800; font-size: 0.75rem; }
+        
+        .plan-price { font-size: 2.2rem; font-weight: 800; margin: 20px 0; color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .plan-features { list-style: none; margin-bottom: 30px; flex-grow: 1; }
+        .plan-features li { padding: 10px 0; font-size: 0.9rem; border-bottom: 1px solid rgba(255,255,255,0.03); display: flex; align-items: center; gap: 10px; }
+        .not-included { color: var(--text-muted); text-decoration: line-through; opacity: 0.4; }
+        .not-included::before { content: "✕"; color: #ff4d4d; font-weight: bold; width: 15px; }
+        .included::before { content: "✓"; color: var(--accent); font-weight: bold; width: 15px; }
 
-        /* Botones */
-        .btn { padding: 12px 25px; border-radius: 10px; font-weight: 700; cursor: pointer; transition: 0.3s; text-align: center; border: none; }
-        .btn-main { background: var(--primary); color: white; }
-        .btn-accent { background: var(--accent); color: #000; }
-        .btn:hover { transform: translateY(-3px); filter: brightness(1.2); }
+        /* --- SECCIÓN DEMO AGENDA --- */
+        .demo-agenda { background: linear-gradient(180deg, var(--bg-dark), #0f172a); padding: 80px 5%; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
 
-        /* Flotantes */
-        .float-wa { position: fixed; bottom: 20px; right: 20px; width: 60px; z-index: 100; transition: 0.3s; }
-        .float-wa:hover { transform: scale(1.1); }
-        .float-up { position: fixed; bottom: 90px; right: 25px; background: var(--bg-card); width: 45px; height: 45px; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; border: 1px solid var(--accent); opacity: 0; transition: 0.3s; }
+        /* --- BENEFICIOS (ULTIMA SECCIÓN) --- */
+        .benefits { padding: 80px 5%; background: var(--bg-dark); }
+        .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; max-width: 1100px; margin: 0 auto; }
+        .benefit-card { 
+            background: linear-gradient(145deg, #111827, #0a0f1a); padding: 35px 25px; border-radius: 20px; text-align: center;
+            border: 1px solid rgba(255,255,255,0.03); transition: 0.4s;
+        }
+        .benefit-card:hover { transform: translateY(-5px); border-color: var(--accent); box-shadow: 0 0 20px rgba(0, 240, 255, 0.1); }
+        .benefit-card span { font-size: 3rem; display: block; margin-bottom: 15px; filter: drop-shadow(0 0 10px var(--accent-glow)); }
+
+        /* --- BOTONES --- */
+        .btn { padding: 15px 30px; border-radius: 12px; font-weight: 700; cursor: pointer; transition: 0.3s; text-align: center; border: none; display: inline-block; text-decoration: none; }
+        .btn-main { background: var(--primary); color: white; box-shadow: 0 4px 15px var(--primary-glow); }
+        .btn-accent { background: var(--accent); color: #000; box-shadow: 0 4px 20px var(--accent-glow); }
+        .btn:hover { transform: scale(1.05); filter: brightness(1.1); }
+
+        /* --- FLOTANTES --- */
+        .float-wa { position: fixed; bottom: 20px; right: 20px; width: 60px; z-index: 1000; transition: 0.3s; }
+        .float-wa:hover { transform: scale(1.1) rotate(5deg); }
+        .float-up { position: fixed; bottom: 95px; right: 27px; background: var(--bg-card); width: 45px; height: 45px; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; border: 1px solid var(--accent); opacity: 0; transition: 0.3s; z-index: 999; color: var(--accent); font-weight: bold; }
 
         @media (max-width: 768px) {
-            .hero h1 { font-size: 1.9rem; }
+            .hero h1 { font-size: 2.2rem; }
             .plans-grid { grid-template-columns: 1fr; }
         }
     </style>
@@ -100,51 +105,26 @@
 <body>
 
     <header>
-        <div class="logo" id="logo-text">Kirev <span>Digital Agency</span></div>
-        <select id="lang-selector" onchange="changeLanguage(this.value)" style="background:transparent; color:white; border:1px solid var(--accent); border-radius:5px; padding:2px 5px;">
+        <div class="logo">Kirev <span>Digital Agency</span></div>
+        <select id="lang-selector" onchange="changeLanguage(this.value)" style="background:transparent; color:white; border:1px solid var(--accent); border-radius:5px; padding:4px 8px; cursor:pointer;">
             <option value="es">ES</option>
             <option value="en">EN</option>
             <option value="pt">PT</option>
         </select>
     </header>
 
-    <section class="hero reveal active">
-        <div class="agenda-preview">
-            <div class="calendar-dot"></div>
-            <small data-i18n="agenda-live">Sistema de Citas Activo: 24/7</small>
+    <section class="hero reveal">
+        <div class="agenda-badge">
+            <div class="dot"></div>
+            <small data-i18n="agenda-live">AGENDA VIRTUAL ACTIVA</small>
         </div>
         <h1 data-i18n="hero-title">Páginas web que convierten visitas en clientes</h1>
-        <p data-i18n="hero-subtitle">Creamos sitios web inteligentes con sistema de agenda virtual para que tu negocio nunca deje de vender.</p>
+        <p data-i18n="hero-subtitle">Sitios web de alto impacto con sistema de reservas integrado para automatizar tus ventas 24/7.</p>
         <a href="https://wa.me/573105169501" class="btn btn-main" data-i18n="hero-btn">Solicitar mi página ahora</a>
     </section>
 
-    <section class="benefits reveal">
-        <div class="benefits-grid">
-            <div class="benefit-card">
-                <span>📅</span>
-                <h3 data-i18n="ben-1">Agenda Virtual</h3>
-                <p style="font-size: 0.8rem; color: var(--text-muted);">Clientes reservan solos</p>
-            </div>
-            <div class="benefit-card">
-                <span>🎨</span>
-                <h3 data-i18n="ben-2">Diseño Premium</h3>
-                <p style="font-size: 0.8rem; color: var(--text-muted);">Imagen profesional</p>
-            </div>
-            <div class="benefit-card">
-                <span>⚡</span>
-                <h3 data-i18n="ben-3">Entrega Veloz</h3>
-                <p style="font-size: 0.8rem; color: var(--text-muted);">Listo en tiempo récord</p>
-            </div>
-            <div class="benefit-card">
-                <span>📱</span>
-                <h3 data-i18n="ben-4">Carga Rápida</h3>
-                <p style="font-size: 0.8rem; color: var(--text-muted);">Optimizado 100% móvil</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="reveal" style="padding: 20px 5%;">
-        <h2 class="section-title" data-i18n="plans-title">Nuestros Planes</h2>
+    <section class="reveal">
+        <h2 class="section-title" data-i18n="plans-title">Nuestros <span>Planes</span></h2>
         <div class="plans-grid">
             
             <div class="plan-card">
@@ -164,7 +144,7 @@
             </div>
 
             <div class="plan-card pro">
-                <div class="badge">RECOMENDADO</div>
+                <div class="badge" data-i18n="plan-badge">MÁS RECOMENDADO</div>
                 <h3 data-i18n="plan3-title">Plan Pro</h3>
                 <div class="plan-price">$750.000 COP</div>
                 <ul class="plan-features">
@@ -195,40 +175,118 @@
                 </ul>
                 <a href="https://wa.me/573105169501" class="btn btn-main" data-i18n="plan-btn">Solicitar</a>
             </div>
-
         </div>
     </section>
 
+    <section class="demo-agenda reveal">
+        <h2 class="section-title" data-i18n="agenda-title">Mira cómo funciona tu agenda online</h2>
+        <p style="color: var(--silver); margin-bottom: 30px;" data-i18n="agenda-p">Tus clientes eligen fecha, hora y servicio sin que tengas que intervenir.</p>
+        <a href="#" class="btn btn-accent" data-i18n="agenda-btn">Ver ejemplo de agenda</a>
+    </section>
+
+    <section class="benefits reveal">
+        <h2 class="section-title" data-i18n="benefits-title">¿Por qué <span>Elegirnos?</span></h2>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <span>🗓️</span>
+                <h3 data-i18n="ben-1">Agenda Virtual</h3>
+                <p style="font-size: 0.9rem; color: var(--text-muted);" data-i18n="ben-1-d">Tus clientes agendan citas mientras tú descansas.</p>
+            </div>
+            <div class="benefit-card">
+                <span>💎</span>
+                <h3 data-i18n="ben-2">Diseño Premium</h3>
+                <p style="font-size: 0.9rem; color: var(--text-muted);" data-i18n="ben-2-d">Estética futurista que transmite confianza total.</p>
+            </div>
+            <div class="benefit-card">
+                <span>🚀</span>
+                <h3 data-i18n="ben-3">Entrega Veloz</h3>
+                <p style="font-size: 0.9rem; color: var(--text-muted);" data-i18n="ben-3-d">Digitalizamos tu negocio en tiempo récord.</p>
+            </div>
+            <div class="benefit-card">
+                <span>🔥</span>
+                <h3 data-i18n="ben-4">Conversión Real</h3>
+                <p style="font-size: 0.9rem; color: var(--text-muted);" data-i18n="ben-4-d">No solo es una web bonita, es una máquina de ventas.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="reveal" style="padding: 60px 5%; text-align: center; background: #0a0f1a;">
+        <h2 data-i18n="cta-title" style="font-size: 2.2rem; margin-bottom: 25px;">¿Listo para escalar tu negocio?</h2>
+        <a href="https://wa.me/573105169501" class="btn btn-accent" style="padding: 18px 45px; font-size: 1.2rem;" data-i18n="cta-btn">Hablar por WhatsApp</a>
+    </section>
+
     <a href="https://wa.me/573105169501" target="_blank" class="float-wa">
-        <img src="https://static.vecteezy.com/system/resources/previews/018/930/564/non_2x/whatsapp-logo-whatsapp-icon-whatsapp-transparent-free-png.png" width="60">
+        <img src="https://static.vecteezy.com/system/resources/previews/018/930/564/non_2x/whatsapp-logo-whatsapp-icon-whatsapp-transparent-free-png.png" alt="WA">
     </a>
     <div class="float-up" id="btn-up" onclick="window.scrollTo({top:0, behavior:'smooth'})">↑</div>
 
     <script>
         const translations = {
             es: {
-                "agenda-live": "Sistema de Citas Activo: 24/7",
+                "agenda-live": "AGENDA VIRTUAL ACTIVA",
                 "hero-title": "Páginas web que convierten visitas en clientes",
-                "hero-subtitle": "Creamos sitios web inteligentes con sistema de agenda virtual para que tu negocio nunca deje de vender.",
+                "hero-subtitle": "Sitios web de alto impacto con sistema de reservas integrado para automatizar tus ventas 24/7.",
                 "hero-btn": "Solicitar mi página ahora",
-                "ben-1": "Agenda Virtual", "ben-2": "Diseño Premium", "ben-3": "Entrega Veloz", "ben-4": "Carga Rápida",
-                "plans-title": "Nuestros Planes", "plan-btn": "Solicitar"
+                "plans-title": "Nuestros <span>Planes</span>",
+                "plan-badge": "MÁS RECOMENDADO",
+                "plan1-title": "Plan Presencia",
+                "plan2-title": "Plan Crecimiento",
+                "plan3-title": "Plan Pro",
+                "plan-btn": "Solicitar",
+                "agenda-title": "Mira cómo funciona tu agenda online",
+                "agenda-p": "Tus clientes eligen fecha, hora y servicio sin que tengas que intervenir.",
+                "agenda-btn": "Ver ejemplo de agenda",
+                "benefits-title": "¿Por qué <span>Elegirnos?</span>",
+                "ben-1": "Agenda Virtual", "ben-1-d": "Tus clientes agendan citas mientras tú descansas.",
+                "ben-2": "Diseño Premium", "ben-2-d": "Estética futurista que transmite confianza total.",
+                "ben-3": "Entrega Veloz", "ben-3-d": "Digitalizamos tu negocio en tiempo récord.",
+                "ben-4": "Conversión Real", "ben-4-d": "No solo es una web bonita, es una máquina de ventas.",
+                "cta-title": "¿Listo para escalar tu negocio?",
+                "cta-btn": "Hablar por WhatsApp"
             },
             en: {
-                "agenda-live": "Booking System Live: 24/7",
+                "agenda-live": "BOOKING SYSTEM ACTIVE",
                 "hero-title": "Websites that turn visitors into customers",
-                "hero-subtitle": "We create smart websites with a virtual booking system so your business never stops selling.",
+                "hero-subtitle": "High-impact websites with integrated booking systems to automate your sales 24/7.",
                 "hero-btn": "Request my website now",
-                "ben-1": "Virtual Booking", "ben-2": "Premium Design", "ben-3": "Fast Delivery", "ben-4": "Fast Loading",
-                "plans-title": "Our Plans", "plan-btn": "Request"
+                "plans-title": "Our <span>Plans</span>",
+                "plan-badge": "MOST RECOMMENDED",
+                "plan1-title": "Presence Plan",
+                "plan2-title": "Growth Plan",
+                "plan3-title": "Pro Plan",
+                "plan-btn": "Request",
+                "agenda-title": "See how your online booking works",
+                "agenda-p": "Your clients choose date, time, and service without you lifting a finger.",
+                "agenda-btn": "View booking example",
+                "benefits-title": "Why <span>Choose Us?</span>",
+                "ben-1": "Virtual Booking", "ben-1-d": "Your clients book appointments while you sleep.",
+                "ben-2": "Premium Design", "ben-2-d": "Futuristic aesthetics that transmit total trust.",
+                "ben-3": "Fast Delivery", "ben-3-d": "We digitize your business in record time.",
+                "ben-4": "Real Conversion", "ben-4-d": "Not just a pretty site, but a sales machine.",
+                "cta-title": "Ready to scale your business?",
+                "cta-btn": "Chat on WhatsApp"
             },
             pt: {
-                "agenda-live": "Sistema de Agendamento: 24/7",
+                "agenda-live": "AGENDA VIRTUAL ATIVA",
                 "hero-title": "Sites que transformam visitantes em clientes",
-                "hero-subtitle": "Criamos sites inteligentes com sistema de agendamento virtual para que seu negócio nunca pare de vender.",
+                "hero-subtitle": "Sites de alto impacto com sistema de agendamento integrado para automatizar suas vendas 24/7.",
                 "hero-btn": "Solicitar meu site agora",
-                "ben-1": "Agenda Virtual", "ben-2": "Design Premium", "ben-3": "Entrega Rápida", "ben-4": "Carga Veloz",
-                "plans-title": "Nossos Planos", "plan-btn": "Solicitar"
+                "plans-title": "Nossos <span>Planos</span>",
+                "plan-badge": "MAIS RECOMENDADO",
+                "plan1-title": "Plano Presença",
+                "plan2-title": "Plano Crescimento",
+                "plan3-title": "Plano Pro",
+                "plan-btn": "Solicitar",
+                "agenda-title": "Veja como funciona o agendamento online",
+                "agenda-p": "Seus clientes escolhem data, hora e serviço sem que você precise intervir.",
+                "agenda-btn": "Ver exemplo de agenda",
+                "benefits-title": "Por que <span>Escolher-nos?</span>",
+                "ben-1": "Agenda Virtual", "ben-1-d": "Seus clientes agendam enquanto você descansa.",
+                "ben-2": "Design Premium", "ben-2-d": "Estética futurista que transmite confiança total.",
+                "ben-3": "Entrega Veloz", "ben-3-d": "Digitalizamos seu negócio em tempo recorde.",
+                "ben-4": "Conversão Real", "ben-4-d": "Não é apenas um site bonito, é uma máquina de vendas.",
+                "cta-title": "Pronto para escalar seu negócio?",
+                "cta-btn": "Falar no WhatsApp"
             }
         };
 
@@ -237,13 +295,22 @@
                 const key = el.getAttribute('data-i18n');
                 if(translations[lang][key]) el.innerHTML = translations[lang][key];
             });
+            document.documentElement.lang = lang;
         }
 
+        // --- OBSERVAR SCROLL PARA REVELAR ---
+        const observerOptions = { threshold: 0.15 };
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
-        }, { threshold: 0.1 });
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
+        // --- BOTÓN SUBIR ---
         window.onscroll = () => {
             document.getElementById('btn-up').style.opacity = window.scrollY > 500 ? "1" : "0";
         };
