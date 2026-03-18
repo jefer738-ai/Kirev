@@ -5,6 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kirev Digital Agency</title>
     <style>
+        /* Estilo para las banderas en el selector */
+select#lang-selector {
+    background: #111827;
+    color: #fff;
+    border: 1px solid var(--accent);
+    padding: 5px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+/* Estilo para que el precio resalte cuando cambie a USD */
+.plan-price.usd-active {
+    color: var(--accent);
+    font-size: 1.8rem;
+}
         /* --- FOOTER --- */
         footer {
             background: rgba(10, 14, 23, 0.95);
@@ -205,59 +220,35 @@
         <h1 data-i18n="hero-title">Tu negocio con agenda llena, todos los días</h1>
         <p data-i18n="hero-subtitle">Creamos páginas web que generan citas por ti 24/7</p>
         <a href="https://wa.me/573105169501" class="btn btn-main" data-i18n="hero-btn">Solicitar mi página ahora</a>
-    </section>
-
-    <section class="reveal">
+   <section class="reveal">
         <h2 class="section-title" data-i18n="plans-title">Nuestros <span>Planes</span></h2>
         <div class="plans-grid">
+            
             <div class="plan-card">
                 <h3 data-i18n="plan1-title">Plan Básico</h3>
-                <div class="plan-price">$500.000 COP</div>
-                <ul class="plan-features">
-                    <li class="included">1 año hosting + dominio</li>
-                    <li class="included">Agenda de citas básica</li>
-                    <li class="included">Elegir entre 2 plantillas</li>
-                    <li class="included">Diseño Responsive</li>
-                    <li class="included">Entrega: 10 días</li>
-                    <li class="not-included">Estructura SEO avanzada</li>
-                    <li class="not-included">Diseño enfocado en conversión</li>
-                    <li class="not-included">Soporte Prioritario</li>
-                </ul>
+                <div class="plan-price" id="price-p1">$500.000 COP</div>
+                <ul class="plan-features" id="features-p1">
+                    </ul>
                 <a href="https://wa.me/573105169501" class="btn btn-main" data-i18n="plan-btn">Solicitar</a>
             </div>
 
             <div class="plan-card pro">
                 <div class="badge" data-i18n="plan-badge">MÁS RECOMENDADO</div>
                 <h3 data-i18n="plan3-title">Plan Pro</h3>
-                <div class="plan-price">$750.000 COP</div>
-                <ul class="plan-features">
-                    <li class="included">1 año hosting + dominio</li>
-                    <li class="included">Agenda de citas Premium</li>
-                    <li class="included">Elegir entre 8 plantillas</li>
-                    <li class="included">Diseño Responsive UX/UI</li>
-                    <li class="included">Entrega: 3 a 5 días</li>
-                    <li class="included">Estructura SEO avanzada</li>
-                    <li class="included">Diseño enfocado en conversión</li>
-                    <li class="included">Soporte Prioritario 6 meses</li>
-                </ul>
+                <div class="plan-price" id="price-p3">$750.000 COP</div>
+                <ul class="plan-features" id="features-p3">
+                    </ul>
                 <a href="https://wa.me/573105169501" class="btn btn-accent" data-i18n="plan-btn">Solicitar Ahora</a>
             </div>
 
             <div class="plan-card">
-                <h3 data-i18n="plan2-title">Plan Estandar</h3>
-                <div class="plan-price">$650.000 COP</div>
-                <ul class="plan-features">
-                    <li class="included">1 año hosting + dominio</li>
-                    <li class="included">Agenda de citas estándar</li>
-                    <li class="included">Elegir entre 5 plantillas</li>
-                    <li class="included">Diseño Responsive</li>
-                    <li class="included">Entrega: 10 días</li>
-                    <li class="included">Estructura visual mejorada</li>
-                    <li class="not-included">Diseño enfocado en conversión</li>
-                    <li class="not-included">Soporte Prioritario</li>
-                </ul>
+                <h3 data-i18n="plan2-title">Plan Estándar</h3>
+                <div class="plan-price" id="price-p2">$650.000 COP</div>
+                <ul class="plan-features" id="features-p2">
+                    </ul>
                 <a href="https://wa.me/573105169501" class="btn btn-main" data-i18n="plan-btn">Solicitar</a>
             </div>
+
         </div>
     </section>
 
@@ -379,13 +370,59 @@
             }
         };
 
+       function renderList(listId, features) {
+            const ul = document.getElementById(listId);
+            if (!ul) return;
+            ul.innerHTML = '';
+            features.forEach(([text, included]) => {
+                const li = document.createElement('li');
+                li.className = included ? 'included' : 'not-included';
+                li.innerText = text;
+                ul.appendChild(li);
+            });
+        }
+
         function changeLanguage(lang) {
+            // 1. Traducir textos con data-i18n (Títulos, botones, etc.)
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
-                if(translations[lang][key]) el.innerHTML = translations[lang][key];
+                if (translations[lang] && translations[lang][key]) {
+                    el.innerHTML = translations[lang][key];
+                }
             });
+
+            // 2. Renderizar las listas de beneficios dinámicamente
+            renderList('features-p1', translations[lang]["p1-list"]);
+            renderList('features-p2', translations[lang]["p2-list"]);
+            renderList('features-p3', translations[lang]["p3-list"]);
+
+            // 3. Conversión de Moneda (COP a USD aproximado)
+            const currency = translations[lang].currency;
+            const exchangeRate = 4000; // Puedes ajustar este valor según el TRM actual
+
+            translations["es"].prices.forEach((priceCOP, index) => {
+                // El ID en el HTML debe ser price-p1, price-p2, price-p3
+                const priceEl = document.getElementById(`price-p${index + 1}`);
+                if (priceEl) {
+                    if (currency === "USD") {
+                        // Calculamos y redondeamos a decenas (ej: 125.4 -> 130 o 125)
+                        const usdValue = Math.round(priceCOP / exchangeRate);
+                        priceEl.innerText = `$${usdValue} USD`;
+                        priceEl.style.color = "var(--accent)"; // Resalte visual en USD
+                    } else {
+                        priceEl.innerText = `$${priceCOP.toLocaleString()} COP`;
+                        priceEl.style.color = "#fff";
+                    }
+                }
+            });
+
             document.documentElement.lang = lang;
         }
+
+        // Ejecutar al cargar la página para inicializar en Español
+        window.addEventListener('DOMContentLoaded', () => {
+            changeLanguage('es');
+        });
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
