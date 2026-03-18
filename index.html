@@ -5,6 +5,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kirev Digital Agency</title>
     <style>
+        /* --- FOOTER --- */
+        footer {
+            background: rgba(10, 14, 23, 0.95);
+            padding: 40px 5% 100px; /* Espacio extra abajo para no tapar con los botones flotantes */
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        .footer-logo {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--text-light);
+            letter-spacing: 1px;
+        }
+        .footer-logo span { color: var(--accent); }
+        
+        .footer-socials {
+            display: flex;
+            gap: 25px;
+            margin-bottom: 10px;
+        }
+        .social-link {
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--silver);
+            font-size: 0.9rem;
+            text-decoration: none;
+        }
+        .social-link:hover {
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+        .social-icon {
+            width: 24px;
+            height: 24px;
+            filter: invert(1); /* Para que los iconos negros se vean blancos/plateados */
+        }
+        .copyright {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 20px;
+            width: 100%;
+        }
+        
+        @media (min-width: 768px) {
+            .footer-content {
+                flex-direction: row;
+                justify-content: space-between;
+                text-align: left;
+            }
+            .copyright { text-align: right; border-top: none; padding-top: 0; width: auto; }
+        }
         :root {
             --bg-dark: #070b14;
             --bg-card: #111827;
@@ -241,6 +303,26 @@
         <img src="https://static.vecteezy.com/system/resources/previews/018/930/564/non_2x/whatsapp-logo-whatsapp-icon-whatsapp-transparent-free-png.png" alt="WhatsApp">
     </a>
     <div class="float-up" id="btn-up" onclick="window.scrollTo({top:0, behavior:'smooth'})">↑</div>
+    <footer class="reveal">
+        <div class="footer-content">
+            <div class="footer-logo">Kirev <span>Digital Agency</span></div>
+            
+            <div class="footer-socials">
+                <a href="https://instagram.com/tu_usuario" target="_blank" class="social-link">
+                    <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" class="social-icon" alt="Instagram">
+                    Instagram
+                </a>
+                <a href="https://wa.me/573105169501" target="_blank" class="social-link">
+                    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" class="social-icon" alt="WhatsApp">
+                    WhatsApp
+                </a>
+            </div>
+
+            <div class="copyright">
+                &copy; 2024 Kirev Digital Agency. <span data-i18n="footer-rights">Todos los derechos reservados.</span>
+            </div>
+        </div>
+    </footer>
 
     <script>
         const translations = {
