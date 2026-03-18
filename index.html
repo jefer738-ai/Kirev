@@ -5,83 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kirev Digital Agency</title>
     <style>
-        /* Estilo para las banderas en el selector */
-select#lang-selector {
-    background: #111827;
-    color: #fff;
-    border: 1px solid var(--accent);
-    padding: 5px 10px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 600;
-}
-/* Estilo para que el precio resalte cuando cambie a USD */
-.plan-price.usd-active {
-    color: var(--accent);
-    font-size: 1.8rem;
-}
-        /* --- FOOTER --- */
-        footer {
-            background: rgba(10, 14, 23, 0.95);
-            padding: 40px 5% 100px; /* Espacio extra abajo para no tapar con los botones flotantes */
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            text-align: center;
-        }
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-        }
-        .footer-logo {
-            font-size: 1.2rem;
-            font-weight: 800;
-            color: var(--text-light);
-            letter-spacing: 1px;
-        }
-        .footer-logo span { color: var(--accent); }
-        
-        .footer-socials {
-            display: flex;
-            gap: 25px;
-            margin-bottom: 10px;
-        }
-        .social-link {
-            transition: 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--silver);
-            font-size: 0.9rem;
-            text-decoration: none;
-        }
-        .social-link:hover {
-            color: var(--accent);
-            transform: translateY(-3px);
-        }
-        .social-icon {
-            width: 24px;
-            height: 24px;
-            filter: invert(1); /* Para que los iconos negros se vean blancos/plateados */
-        }
-        .copyright {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            padding-top: 20px;
-            width: 100%;
-        }
-        
-        @media (min-width: 768px) {
-            .footer-content {
-                flex-direction: row;
-                justify-content: space-between;
-                text-align: left;
-            }
-            .copyright { text-align: right; border-top: none; padding-top: 0; width: auto; }
-        }
         :root {
             --bg-dark: #070b14;
             --bg-card: #111827;
@@ -95,14 +18,24 @@ select#lang-selector {
             --glass-bg: rgba(7, 11, 20, 0.9);
         }
 
+        /* Estilo para las banderas en el selector */
+        select#lang-selector {
+            background: #111827;
+            color: #fff;
+            border: 1px solid var(--accent);
+            padding: 5px 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            outline: none;
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
         body { font-family: system-ui, -apple-system, sans-serif; background-color: var(--bg-dark); color: var(--text-light); line-height: 1.5; overflow-x: hidden; }
         
-        /* --- ANIMACIONES DE SCROLL --- */
         .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.2, 1, 0.3, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* --- HEADER --- */
         header {
             position: fixed; top: 0; width: 100%; padding: 12px 5%;
             display: flex; justify-content: space-between; align-items: center;
@@ -112,7 +45,6 @@ select#lang-selector {
         .logo { font-size: 1.1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
         .logo span { color: var(--accent); text-shadow: 0 0 10px var(--accent-glow); }
 
-        /* --- HERO --- */
         .hero {
             min-height: 80vh; display: flex; flex-direction: column; justify-content: center;
             align-items: center; text-align: center; padding: 100px 5% 40px;
@@ -129,7 +61,6 @@ select#lang-selector {
         .dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; animation: pulse 1.5s infinite; }
         @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(1.2); } }
 
-        /* --- PLANES --- */
         .section-title { text-align: center; font-size: 2.2rem; margin-bottom: 40px; padding: 0 5%; }
         .section-title span { color: var(--accent); }
         .plans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; padding: 0 5% 60px; max-width: 1200px; margin: 0 auto; }
@@ -142,14 +73,13 @@ select#lang-selector {
         .plan-card.pro { border: 2px solid var(--accent); box-shadow: 0 0 25px rgba(0, 240, 255, 0.2); }
         .badge { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--accent); color: #000; padding: 5px 20px; border-radius: 20px; font-weight: 800; font-size: 0.75rem; }
         
-        .plan-price { font-size: 2.2rem; font-weight: 800; margin: 20px 0; color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .plan-price { font-size: 2.2rem; font-weight: 800; margin: 20px 0; color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,0.3); transition: 0.3s; }
         .plan-features { list-style: none; margin-bottom: 30px; flex-grow: 1; }
         .plan-features li { padding: 10px 0; font-size: 0.9rem; border-bottom: 1px solid rgba(255,255,255,0.03); display: flex; align-items: center; gap: 10px; }
         .not-included { color: var(--text-muted); text-decoration: line-through; opacity: 0.4; }
         .not-included::before { content: "✕"; color: #ff4d4d; font-weight: bold; width: 15px; }
         .included::before { content: "✓"; color: var(--accent); font-weight: bold; width: 15px; }
 
-        /* --- SECCIÓN GOOGLE CALENDAR (NUEVA) --- */
         .calendar-section { padding: 60px 5%; text-align: center; }
         .calendar-container {
             width: 100%; max-width: 900px; margin: 0 auto;
@@ -159,7 +89,6 @@ select#lang-selector {
         }
         iframe { width: 100%; height: 100%; border: none; }
 
-        /* --- BENEFICIOS --- */
         .benefits { padding: 80px 5%; background: var(--bg-dark); }
         .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; max-width: 1100px; margin: 0 auto; }
         .benefit-card { 
@@ -169,30 +98,34 @@ select#lang-selector {
         .benefit-card:hover { transform: translateY(-5px); border-color: var(--accent); box-shadow: 0 0 20px rgba(0, 240, 255, 0.1); }
         .benefit-card span { font-size: 3rem; display: block; margin-bottom: 15px; filter: drop-shadow(0 0 10px var(--accent-glow)); }
 
-        /* --- BOTONES --- */
         .btn { padding: 15px 30px; border-radius: 12px; font-weight: 700; cursor: pointer; transition: 0.3s; text-align: center; border: none; display: inline-block; text-decoration: none; }
         .btn-main { background: var(--primary); color: white; box-shadow: 0 4px 15px var(--primary-glow); }
         .btn-accent { background: var(--accent); color: #000; box-shadow: 0 4px 20px var(--accent-glow); }
         .btn:hover { transform: scale(1.05); filter: brightness(1.1); }
 
-        /* --- FLOTANTES (CORREGIDOS) --- */
-        .float-wa { 
-            position: fixed; bottom: 20px; right: 20px; 
-            width: 60px; height: 60px; z-index: 1001; 
-            transition: 0.3s; display: block;
-        }
+        .float-wa { position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px; z-index: 1001; transition: 0.3s; display: block; }
         .float-wa img { width: 100%; height: 100%; display: block; }
         .float-wa:hover { transform: scale(1.1) rotate(5deg); }
 
         .float-up { 
-            position: fixed; bottom: 95px; right: 27px; 
-            background: var(--bg-card); width: 45px; height: 45px; 
-            border-radius: 50%; display: flex; justify-content: center; 
-            align-items: center; cursor: pointer; border: 1px solid var(--accent); 
-            opacity: 0; transition: 0.3s; z-index: 1000; color: var(--accent); 
+            position: fixed; bottom: 95px; right: 27px; background: var(--bg-card); width: 45px; height: 45px; 
+            border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; 
+            border: 1px solid var(--accent); opacity: 0; transition: 0.3s; z-index: 1000; color: var(--accent); 
             font-weight: bold; pointer-events: none;
         }
         .float-up.visible { opacity: 1; pointer-events: auto; }
+
+        footer {
+            background: rgba(10, 14, 23, 0.95); padding: 40px 5% 100px; border-top: 1px solid rgba(255, 255, 255, 0.05); text-align: center;
+        }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 20px; }
+        .footer-logo { font-size: 1.2rem; font-weight: 800; color: var(--text-light); letter-spacing: 1px; }
+        .footer-logo span { color: var(--accent); }
+        .footer-socials { display: flex; gap: 25px; margin-bottom: 10px; }
+        .social-link { transition: 0.3s; display: flex; align-items: center; gap: 8px; color: var(--silver); font-size: 0.9rem; text-decoration: none; }
+        .social-link:hover { color: var(--accent); transform: translateY(-3px); }
+        .social-icon { width: 24px; height: 24px; filter: invert(1); }
+        .copyright { font-size: 0.8rem; color: var(--text-muted); border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 20px; width: 100%; }
 
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.2rem; }
@@ -205,10 +138,10 @@ select#lang-selector {
 
     <header>
         <div class="logo">Kirev <span>Digital Agency</span></div>
-        <select id="lang-selector" onchange="changeLanguage(this.value)" style="background:transparent; color:white; border:1px solid var(--accent); border-radius:5px; padding:4px 8px; cursor:pointer;">
-            <option value="es">ES</option>
-            <option value="en">EN</option>
-            <option value="pt">PT</option>
+        <select id="lang-selector" onchange="changeLanguage(this.value)">
+            <option value="es">🇪🇸 ES</option>
+            <option value="en">🇺🇸 EN</option>
+            <option value="pt">🇧🇷 PT</option>
         </select>
     </header>
 
@@ -217,18 +150,18 @@ select#lang-selector {
             <div class="dot"></div>
             <small data-i18n="agenda-live">AGENDA VIRTUAL ACTIVA</small>
         </div>
-        <h1 data-i18n="hero-title">Tu negocio con agenda llena, todos los días</h1>
-        <p data-i18n="hero-subtitle">Creamos páginas web que generan citas por ti 24/7</p>
+        <h1 data-i18n="hero-title">Páginas web que convierten visitas en clientes</h1>
+        <p data-i18n="hero-subtitle">Sitios web de alto impacto con sistema de reservas integrado para automatizar tus ventas 24/7.</p>
         <a href="https://wa.me/573105169501" class="btn btn-main" data-i18n="hero-btn">Solicitar mi página ahora</a>
-   <section class="reveal">
+    </section>
+
+    <section class="reveal">
         <h2 class="section-title" data-i18n="plans-title">Nuestros <span>Planes</span></h2>
         <div class="plans-grid">
-            
             <div class="plan-card">
                 <h3 data-i18n="plan1-title">Plan Básico</h3>
                 <div class="plan-price" id="price-p1">$500.000 COP</div>
-                <ul class="plan-features" id="features-p1">
-                    </ul>
+                <ul class="plan-features" id="features-p1"></ul>
                 <a href="https://wa.me/573105169501" class="btn btn-main" data-i18n="plan-btn">Solicitar</a>
             </div>
 
@@ -236,19 +169,16 @@ select#lang-selector {
                 <div class="badge" data-i18n="plan-badge">MÁS RECOMENDADO</div>
                 <h3 data-i18n="plan3-title">Plan Pro</h3>
                 <div class="plan-price" id="price-p3">$750.000 COP</div>
-                <ul class="plan-features" id="features-p3">
-                    </ul>
+                <ul class="plan-features" id="features-p3"></ul>
                 <a href="https://wa.me/573105169501" class="btn btn-accent" data-i18n="plan-btn">Solicitar Ahora</a>
             </div>
 
             <div class="plan-card">
                 <h3 data-i18n="plan2-title">Plan Estándar</h3>
                 <div class="plan-price" id="price-p2">$650.000 COP</div>
-                <ul class="plan-features" id="features-p2">
-                    </ul>
+                <ul class="plan-features" id="features-p2"></ul>
                 <a href="https://wa.me/573105169501" class="btn btn-main" data-i18n="plan-btn">Solicitar</a>
             </div>
-
         </div>
     </section>
 
@@ -294,10 +224,10 @@ select#lang-selector {
         <img src="https://static.vecteezy.com/system/resources/previews/018/930/564/non_2x/whatsapp-logo-whatsapp-icon-whatsapp-transparent-free-png.png" alt="WhatsApp">
     </a>
     <div class="float-up" id="btn-up" onclick="window.scrollTo({top:0, behavior:'smooth'})">↑</div>
+
     <footer class="reveal">
         <div class="footer-content">
             <div class="footer-logo">Kirev <span>Digital Agency</span></div>
-            
             <div class="footer-socials">
                 <a href="https://instagram.com/kirev.digital" target="_blank" class="social-link">
                     <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" class="social-icon" alt="Instagram">
@@ -308,7 +238,6 @@ select#lang-selector {
                     WhatsApp
                 </a>
             </div>
-
             <div class="copyright">
                 &copy; 2024 Kirev Digital Agency. <span data-i18n="footer-rights">Todos los derechos reservados.</span>
             </div>
@@ -323,6 +252,9 @@ select#lang-selector {
                 "hero-subtitle": "Sitios web de alto impacto con sistema de reservas integrado para automatizar tus ventas 24/7.",
                 "hero-btn": "Solicitar mi página ahora",
                 "plans-title": "Nuestros <span>Planes</span>",
+                "plan1-title": "Plan Básico",
+                "plan2-title": "Plan Estándar",
+                "plan3-title": "Plan Pro",
                 "plan-badge": "MÁS RECOMENDADO",
                 "plan-btn": "Solicitar",
                 "agenda-title": "Mira cómo funciona tu agenda online",
@@ -332,7 +264,13 @@ select#lang-selector {
                 "ben-3": "Entrega Veloz", "ben-3-d": "Digitalizamos tu negocio en tiempo récord.",
                 "ben-4": "Conversión Real", "ben-4-d": "No solo es una web bonita, es una máquina de ventas.",
                 "cta-title": "¿Listo para escalar tu negocio?",
-                "cta-btn": "Hablar por WhatsApp"
+                "cta-btn": "Hablar por WhatsApp",
+                "footer-rights": "Todos los derechos reservados.",
+                "currency": "COP",
+                "prices": [500000, 650000, 750000],
+                "p1-list": [["1 año hosting + dominio", true], ["Agenda de citas básica", true], ["Elegir entre 2 plantillas", true], ["Diseño Responsive", true], ["Entrega: 10 días", true], ["Estructura SEO avanzada", false], ["Diseño enfocado en conversión", false], ["Soporte Prioritario", false]],
+                "p2-list": [["1 año hosting + dominio", true], ["Agenda de citas estándar", true], ["Elegir entre 5 plantillas", true], ["Diseño Responsive", true], ["Entrega: 10 días", true], ["Estructura visual mejorada", true], ["Diseño enfocado en conversión", false], ["Soporte Prioritario", false]],
+                "p3-list": [["1 año hosting + dominio", true], ["Agenda de citas Premium", true], ["Elegir entre 8 plantillas", true], ["Diseño Responsive UX/UI", true], ["Entrega: 3 a 5 días", true], ["Estructura SEO avanzada", true], ["Diseño enfocado en conversión", true], ["Soporte Prioritario 6 meses", true]]
             },
             en: {
                 "agenda-live": "BOOKING SYSTEM ACTIVE",
@@ -340,6 +278,9 @@ select#lang-selector {
                 "hero-subtitle": "High-impact websites with integrated booking systems to automate your sales 24/7.",
                 "hero-btn": "Request my website now",
                 "plans-title": "Our <span>Plans</span>",
+                "plan1-title": "Basic Plan",
+                "plan2-title": "Standard Plan",
+                "plan3-title": "Pro Plan",
                 "plan-badge": "MOST RECOMMENDED",
                 "plan-btn": "Request",
                 "agenda-title": "See how your online booking works",
@@ -349,7 +290,12 @@ select#lang-selector {
                 "ben-3": "Fast Delivery", "ben-3-d": "We digitize your business in record time.",
                 "ben-4": "Real Conversion", "ben-4-d": "Not just a pretty site, but a sales machine.",
                 "cta-title": "Ready to scale your business?",
-                "cta-btn": "Chat on WhatsApp"
+                "cta-btn": "Chat on WhatsApp",
+                "footer-rights": "All rights reserved.",
+                "currency": "USD",
+                "p1-list": [["1 year hosting + domain", true], ["Basic booking system", true], ["Choose from 2 templates", true], ["Responsive Design", true], ["Delivery: 10 days", true], ["Advanced SEO structure", false], ["Conversion-focused design", false], ["Priority Support", false]],
+                "p2-list": [["1 year hosting + domain", true], ["Standard booking system", true], ["Choose from 5 templates", true], ["Responsive Design", true], ["Delivery: 10 days", true], ["Improved visual structure", true], ["Conversion-focused design", false], ["Priority Support", false]],
+                "p3-list": [["1 year hosting + domain", true], ["Premium booking system", true], ["Choose from 8 templates", true], ["Responsive UX/UI Design", true], ["Delivery: 3-5 days", true], ["Advanced SEO structure", true], ["Conversion-focused design", true], ["6 months Priority Support", true]]
             },
             pt: {
                 "agenda-live": "AGENDA VIRTUAL ATIVA",
@@ -357,6 +303,9 @@ select#lang-selector {
                 "hero-subtitle": "Sites de alto impacto com sistema de agendamento integrado para automatizar suas vendas 24/7.",
                 "hero-btn": "Solicitar meu site agora",
                 "plans-title": "Nossos <span>Planos</span>",
+                "plan1-title": "Plano Básico",
+                "plan2-title": "Plano Padrão",
+                "plan3-title": "Plano Pro",
                 "plan-badge": "MAIS RECOMENDADO",
                 "plan-btn": "Solicitar",
                 "agenda-title": "Veja como funciona o agendamento online",
@@ -366,11 +315,16 @@ select#lang-selector {
                 "ben-3": "Entrega Veloz", "ben-3-d": "Digitalizamos seu negocio em tempo recorde.",
                 "ben-4": "Conversão Real", "ben-4-d": "Não é apenas um site bonito, é uma máquina de vendas.",
                 "cta-title": "Pronto para escalar seu negócio?",
-                "cta-btn": "Falar no WhatsApp"
+                "cta-btn": "Falar no WhatsApp",
+                "footer-rights": "Todos os direitos reservados.",
+                "currency": "USD",
+                "p1-list": [["1 ano hospedagem + domínio", true], ["Agenda básica", true], ["Escolha entre 2 templates", true], ["Design Responsivo", true], ["Entrega: 10 dias", true], ["Estrutura SEO avançada", false], ["Design focado em conversão", false], ["Suporte Prioritário", false]],
+                "p2-list": [["1 ano hospedagem + domínio", true], ["Agenda padrão", true], ["Escolha entre 5 templates", true], ["Design Responsivo", true], ["Entrega: 10 dias", true], ["Melhor estrutura visual", true], ["Design focado em conversão", false], ["Suporte Prioritário", false]],
+                "p3-list": [["1 ano hospedagem + domínio", true], ["Agenda Premium", true], ["Escolha entre 8 templates", true], ["Design Responsivo UX/UI", true], ["Entrega: 3 a 5 dias", true], ["Estrutura SEO avançada", true], ["Design focado em conversão", true], ["Suporte Prioritário 6 meses", true]]
             }
         };
 
-       function renderList(listId, features) {
+        function renderList(listId, features) {
             const ul = document.getElementById(listId);
             if (!ul) return;
             ul.innerHTML = '';
@@ -383,7 +337,6 @@ select#lang-selector {
         }
 
         function changeLanguage(lang) {
-            // 1. Traducir textos con data-i18n (Títulos, botones, etc.)
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (translations[lang] && translations[lang][key]) {
@@ -391,24 +344,21 @@ select#lang-selector {
                 }
             });
 
-            // 2. Renderizar las listas de beneficios dinámicamente
             renderList('features-p1', translations[lang]["p1-list"]);
             renderList('features-p2', translations[lang]["p2-list"]);
             renderList('features-p3', translations[lang]["p3-list"]);
 
-            // 3. Conversión de Moneda (COP a USD aproximado)
             const currency = translations[lang].currency;
-            const exchangeRate = 4000; // Puedes ajustar este valor según el TRM actual
+            const exchangeRate = 4000; 
 
             translations["es"].prices.forEach((priceCOP, index) => {
-                // El ID en el HTML debe ser price-p1, price-p2, price-p3
-                const priceEl = document.getElementById(`price-p${index + 1}`);
+                const priceIds = [1, 3, 2]; // Orden en el HTML: Básico(1), Pro(3), Estándar(2)
+                const priceEl = document.getElementById(`price-p${priceIds[index]}`);
                 if (priceEl) {
                     if (currency === "USD") {
-                        // Calculamos y redondeamos a decenas (ej: 125.4 -> 130 o 125)
                         const usdValue = Math.round(priceCOP / exchangeRate);
                         priceEl.innerText = `$${usdValue} USD`;
-                        priceEl.style.color = "var(--accent)"; // Resalte visual en USD
+                        priceEl.style.color = "var(--accent)";
                     } else {
                         priceEl.innerText = `$${priceCOP.toLocaleString()} COP`;
                         priceEl.style.color = "#fff";
@@ -419,7 +369,6 @@ select#lang-selector {
             document.documentElement.lang = lang;
         }
 
-        // Ejecutar al cargar la página para inicializar en Español
         window.addEventListener('DOMContentLoaded', () => {
             changeLanguage('es');
         });
