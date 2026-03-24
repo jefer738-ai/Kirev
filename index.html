@@ -352,7 +352,7 @@
             const exchangeRate = 4000; 
 
             translations["es"].prices.forEach((priceCOP, index) => {
-                const priceIds = [1, 3, 2]; // Orden en el HTML: Básico(1), Pro(3), Estándar(2)
+                const priceIds = [1, 2, 3]; // ¡CORREGIDO AQUÍ! Orden exacto: Básico(1), Estándar(2), Pro(3)
                 const priceEl = document.getElementById(`price-p${priceIds[index]}`);
                 if (priceEl) {
                     if (currency === "USD") {
