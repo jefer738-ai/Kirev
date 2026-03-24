@@ -16,6 +16,7 @@
             --text-light: #f3f4f6;
             --text-muted: #6b7280;
             --glass-bg: rgba(7, 11, 20, 0.9);
+            --promo-color: #ff3e3e;
         }
 
         /* Estilo para las banderas en el selector */
@@ -71,9 +72,14 @@
         }
         .plan-card:hover { transform: translateY(-10px); border-color: var(--primary); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .plan-card.pro { border: 2px solid var(--accent); box-shadow: 0 0 25px rgba(0, 240, 255, 0.2); }
-        .badge { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--accent); color: #000; padding: 5px 20px; border-radius: 20px; font-weight: 800; font-size: 0.75rem; }
+        .badge { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--accent); color: #000; padding: 5px 20px; border-radius: 20px; font-weight: 800; font-size: 0.75rem; z-index: 2; }
         
-        .plan-price { font-size: 2.2rem; font-weight: 800; margin: 20px 0; color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,0.3); transition: 0.3s; }
+        /* Estilos de Promo */
+        .promo-tag { color: var(--promo-color); font-weight: 800; font-size: 0.85rem; margin-bottom: -15px; text-transform: uppercase; letter-spacing: 1px; }
+        .old-price { text-decoration: line-through; color: var(--text-muted); font-size: 1.1rem; margin-bottom: -5px; display: block; }
+        .promo-deadline { background: rgba(255, 62, 62, 0.1); color: #ffbcbc; border: 1px dashed var(--promo-color); padding: 5px; border-radius: 8px; font-size: 0.75rem; margin-top: 10px; font-weight: 600; }
+
+        .plan-price { font-size: 2.2rem; font-weight: 800; margin: 10px 0 20px; color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,0.3); transition: 0.3s; }
         .plan-features { list-style: none; margin-bottom: 30px; flex-grow: 1; }
         .plan-features li { padding: 10px 0; font-size: 0.9rem; border-bottom: 1px solid rgba(255,255,255,0.03); display: flex; align-items: center; gap: 10px; }
         .not-included { color: var(--text-muted); text-decoration: line-through; opacity: 0.4; }
@@ -167,16 +173,22 @@
 
             <div class="plan-card pro">
                 <div class="badge" data-i18n="plan-badge">MÁS RECOMENDADO</div>
+                <div class="promo-tag" data-i18n="promo-label">¡SUPER PROMO -20%!</div>
                 <h3 data-i18n="plan3-title">Plan Pro</h3>
-                <div class="plan-price" id="price-p3">$750.000 COP</div>
+                <span class="old-price" id="old-p3">$900.000</span>
+                <div class="plan-price" id="price-p3"></div>
                 <ul class="plan-features" id="features-p3"></ul>
+                <div class="promo-deadline" data-i18n="promo-date">Válido hasta el 15 de Abril, 2026</div>
                 <a href="https://wa.me/573105169501" class="btn btn-accent" data-i18n="plan-btn">Solicitar Ahora</a>
             </div>
 
             <div class="plan-card">
+                <div class="promo-tag" data-i18n="promo-label">¡OFERTA -20%!</div>
                 <h3 data-i18n="plan2-title">Plan Estándar</h3>
-                <div class="plan-price" id="price-p2">$650.000 COP</div>
+                <span class="old-price" id="old-p2">$700.000</span>
+                <div class="plan-price" id="price-p2"></div>
                 <ul class="plan-features" id="features-p2"></ul>
+                <div class="promo-deadline" data-i18n="promo-date">Válido hasta el 15 de Abril, 2026</div>
                 <a href="https://wa.me/573105169501" class="btn btn-main" data-i18n="plan-btn">Solicitar</a>
             </div>
         </div>
@@ -257,6 +269,8 @@
                 "plan3-title": "Plan Pro",
                 "plan-badge": "MÁS RECOMENDADO",
                 "plan-btn": "Solicitar",
+                "promo-label": "¡OFERTA ESPECIAL -20%!",
+                "promo-date": "Promo válida hasta el 15 de Abril de 2026",
                 "agenda-title": "Mira cómo funciona tu agenda online",
                 "benefits-title": "¿Por qué <span>Elegirnos?</span>",
                 "ben-1": "Agenda Virtual", "ben-1-d": "Tus clientes agendan citas mientras tú descansas.",
@@ -267,7 +281,7 @@
                 "cta-btn": "Hablar por WhatsApp",
                 "footer-rights": "Todos los derechos reservados.",
                 "currency": "COP",
-                "prices": [500000, 650000, 750000],
+                "prices": [500000, 700000, 900000], // Valores base
                 "p1-list": [["1 año hosting + dominio", true], ["Agenda de citas básica", true], ["Elegir entre 2 plantillas", true], ["Diseño Responsive", true], ["Entrega: 10 días", true], ["Estructura SEO avanzada", false], ["Diseño enfocado en conversión", false], ["Soporte Prioritario", false]],
                 "p2-list": [["1 año hosting + dominio", true], ["Agenda de citas estándar", true], ["Elegir entre 5 plantillas", true], ["Diseño Responsive", true], ["Entrega: 10 días", true], ["Estructura visual mejorada", true], ["Diseño enfocado en conversión", false], ["Soporte Prioritario", false]],
                 "p3-list": [["1 año hosting + dominio", true], ["Agenda de citas Premium", true], ["Elegir entre 8 plantillas", true], ["Diseño Responsive UX/UI", true], ["Entrega: 3 a 5 días", true], ["Estructura SEO avanzada", true], ["Diseño enfocado en conversión", true], ["Soporte Prioritario 6 meses", true]]
@@ -283,6 +297,8 @@
                 "plan3-title": "Pro Plan",
                 "plan-badge": "MOST RECOMMENDED",
                 "plan-btn": "Request",
+                "promo-label": "LIMITED OFFER -20%!",
+                "promo-date": "Promo valid until April 15, 2026",
                 "agenda-title": "See how your online booking works",
                 "benefits-title": "Why <span>Choose Us?</span>",
                 "ben-1": "Virtual Booking", "ben-1-d": "Your clients book appointments while you sleep.",
@@ -308,6 +324,8 @@
                 "plan3-title": "Plano Pro",
                 "plan-badge": "MAIS RECOMENDADO",
                 "plan-btn": "Solicitar",
+                "promo-label": "OFERTA ESPECIAL -20%!",
+                "promo-date": "Válido até 15 de Abril de 2026",
                 "agenda-title": "Veja como funciona o agendamento online",
                 "benefits-title": "Por que <span>Escolher-nos?</span>",
                 "ben-1": "Agenda Virtual", "ben-1-d": "Seus clientes agendam enquanto você descansa.",
@@ -351,17 +369,30 @@
             const currency = translations[lang].currency;
             const exchangeRate = 4000; 
 
-            translations["es"].prices.forEach((priceCOP, index) => {
-                const priceIds = [1, 2, 3]; // ¡CORREGIDO AQUÍ! Orden exacto: Básico(1), Estándar(2), Pro(3)
-                const priceEl = document.getElementById(`price-p${priceIds[index]}`);
+            // Aplicamos lógica de precios
+            translations["es"].prices.forEach((basePrice, index) => {
+                const priceIds = [1, 2, 3]; // Básico, Estándar, Pro
+                const currentId = priceIds[index];
+                const priceEl = document.getElementById(`price-p${currentId}`);
+                const oldPriceEl = document.getElementById(`old-p${currentId}`);
+                
+                // Aplicar descuento del 20% a Estándar (index 1) y Pro (index 2)
+                let finalPrice = basePrice;
+                if (index === 1 || index === 2) {
+                    finalPrice = basePrice * 0.8;
+                }
+
                 if (priceEl) {
                     if (currency === "USD") {
-                        const usdValue = Math.round(priceCOP / exchangeRate);
+                        const usdValue = Math.round(finalPrice / exchangeRate);
+                        const oldUsdValue = Math.round(basePrice / exchangeRate);
                         priceEl.innerText = `$${usdValue} USD`;
                         priceEl.style.color = "var(--accent)";
+                        if (oldPriceEl) oldPriceEl.innerText = `$${oldUsdValue} USD`;
                     } else {
-                        priceEl.innerText = `$${priceCOP.toLocaleString()} COP`;
+                        priceEl.innerText = `$${finalPrice.toLocaleString()} COP`;
                         priceEl.style.color = "#fff";
+                        if (oldPriceEl) oldPriceEl.innerText = `$${basePrice.toLocaleString()} COP`;
                     }
                 }
             });
