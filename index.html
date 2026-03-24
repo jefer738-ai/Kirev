@@ -19,7 +19,6 @@
             --promo-color: #ff3e3e;
         }
 
-        /* Estilo para las banderas en el selector */
         select#lang-selector {
             background: #111827;
             color: #fff;
@@ -47,12 +46,20 @@
         .logo span { color: var(--accent); text-shadow: 0 0 10px var(--accent-glow); }
 
         .hero {
-            min-height: 80vh; display: flex; flex-direction: column; justify-content: center;
-            align-items: center; text-align: center; padding: 100px 5% 40px;
+            min-height: 90vh; display: flex; flex-direction: column; justify-content: center;
+            align-items: center; text-align: center; padding: 120px 5% 40px;
             background: radial-gradient(circle at 50% 50%, rgba(74, 144, 226, 0.12) 0%, var(--bg-dark) 75%);
         }
         .hero h1 { font-size: 3rem; margin-bottom: 15px; background: linear-gradient(to right, #fff, var(--accent), #fff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; max-width: 900px; line-height: 1.1; }
-        .hero p { font-size: 1.2rem; color: var(--silver); margin-bottom: 30px; max-width: 700px; opacity: 0.9; }
+        .hero p { font-size: 1.2rem; color: var(--silver); margin-bottom: 20px; max-width: 700px; opacity: 0.9; }
+
+        /* Estilos Countdown */
+        .countdown-container { margin-bottom: 30px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+        .countdown-title { font-size: 0.8rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; }
+        .timer { display: flex; gap: 15px; }
+        .timer-unit { display: flex; flex-direction: column; align-items: center; min-width: 60px; }
+        .timer-unit span:first-child { font-size: 1.8rem; font-weight: 800; color: #fff; text-shadow: 0 0 10px var(--accent-glow); }
+        .timer-unit span:last-child { font-size: 0.6rem; color: var(--text-muted); text-transform: uppercase; }
 
         .agenda-badge {
             background: rgba(0, 240, 255, 0.1); border: 1px solid var(--accent);
@@ -67,19 +74,19 @@
         .plans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; padding: 0 5% 60px; max-width: 1200px; margin: 0 auto; }
         
         .plan-card { 
-            background: var(--bg-card); border-radius: 20px; padding: 40px 25px; border: 1px solid rgba(255,255,255,0.05);
+            background: var(--bg-card); border-radius: 20px; padding: 45px 25px 40px; border: 1px solid rgba(255,255,255,0.05);
             display: flex; flex-direction: column; position: relative; transition: 0.4s;
         }
         .plan-card:hover { transform: translateY(-10px); border-color: var(--primary); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .plan-card.pro { border: 2px solid var(--accent); box-shadow: 0 0 25px rgba(0, 240, 255, 0.2); }
         .badge { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--accent); color: #000; padding: 5px 20px; border-radius: 20px; font-weight: 800; font-size: 0.75rem; z-index: 2; }
         
-        /* Estilos de Promo */
-        .promo-tag { color: var(--promo-color); font-weight: 800; font-size: 0.85rem; margin-bottom: -15px; text-transform: uppercase; letter-spacing: 1px; }
-        .old-price { text-decoration: line-through; color: var(--text-muted); font-size: 1.1rem; margin-bottom: -5px; display: block; }
-        .promo-deadline { background: rgba(255, 62, 62, 0.1); color: #ffbcbc; border: 1px dashed var(--promo-color); padding: 5px; border-radius: 8px; font-size: 0.75rem; margin-top: 10px; font-weight: 600; }
+        /* Correciones de Promo en Tarjetas */
+        .promo-tag { color: var(--promo-color); font-weight: 800; font-size: 0.85rem; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px; display: block; }
+        .old-price { text-decoration: line-through; color: var(--text-muted); font-size: 1.1rem; display: block; margin-bottom: -5px; }
+        .promo-deadline { background: rgba(255, 62, 62, 0.1); color: #ffbcbc; border: 1px dashed var(--promo-color); padding: 8px; border-radius: 8px; font-size: 0.75rem; margin: 15px 0; font-weight: 600; line-height: 1.2; }
 
-        .plan-price { font-size: 2.2rem; font-weight: 800; margin: 10px 0 20px; color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,0.3); transition: 0.3s; }
+        .plan-price { font-size: 2.2rem; font-weight: 800; margin: 5px 0 15px; color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,0.3); transition: 0.3s; }
         .plan-features { list-style: none; margin-bottom: 30px; flex-grow: 1; }
         .plan-features li { padding: 10px 0; font-size: 0.9rem; border-bottom: 1px solid rgba(255,255,255,0.03); display: flex; align-items: center; gap: 10px; }
         .not-included { color: var(--text-muted); text-decoration: line-through; opacity: 0.4; }
@@ -121,22 +128,18 @@
         }
         .float-up.visible { opacity: 1; pointer-events: auto; }
 
-        footer {
-            background: rgba(10, 14, 23, 0.95); padding: 40px 5% 100px; border-top: 1px solid rgba(255, 255, 255, 0.05); text-align: center;
-        }
+        footer { background: rgba(10, 14, 23, 0.95); padding: 40px 5% 100px; border-top: 1px solid rgba(255, 255, 255, 0.05); text-align: center; }
         .footer-content { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 20px; }
         .footer-logo { font-size: 1.2rem; font-weight: 800; color: var(--text-light); letter-spacing: 1px; }
         .footer-logo span { color: var(--accent); }
-        .footer-socials { display: flex; gap: 25px; margin-bottom: 10px; }
-        .social-link { transition: 0.3s; display: flex; align-items: center; gap: 8px; color: var(--silver); font-size: 0.9rem; text-decoration: none; }
-        .social-link:hover { color: var(--accent); transform: translateY(-3px); }
-        .social-icon { width: 24px; height: 24px; filter: invert(1); }
         .copyright { font-size: 0.8rem; color: var(--text-muted); border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 20px; width: 100%; }
 
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.2rem; }
             .plans-grid { grid-template-columns: 1fr; }
             .calendar-container { height: 500px; }
+            .timer-unit { min-width: 45px; }
+            .timer-unit span:first-child { font-size: 1.3rem; }
         }
     </style>
 </head>
@@ -157,6 +160,17 @@
             <small data-i18n="agenda-live">AGENDA VIRTUAL ACTIVA</small>
         </div>
         <h1 data-i18n="hero-title">Tu negocio con agenda llena, todos los días</h1>
+        
+        <div class="countdown-container">
+            <p class="countdown-title" data-i18n="promo-label">OFERTA ESPECIAL POR TIEMPO LIMITADO</p>
+            <div class="timer" id="timer">
+                <div class="timer-unit"><span id="days">00</span><span data-i18n="days">Días</span></div>
+                <div class="timer-unit"><span id="hours">00</span><span data-i18n="hours">Horas</span></div>
+                <div class="timer-unit"><span id="minutes">00</span><span data-i18n="mins">Mins</span></div>
+                <div class="timer-unit"><span id="seconds">00</span><span data-i18n="secs">Segs</span></div>
+            </div>
+        </div>
+
         <p data-i18n="hero-subtitle">Creamos páginas web que generan citas por ti 24/7</p>
         <a href="https://wa.me/573105169501" class="btn btn-main" data-i18n="hero-btn">Solicitar mi página ahora</a>
     </section>
@@ -173,22 +187,22 @@
 
             <div class="plan-card pro">
                 <div class="badge" data-i18n="plan-badge">MÁS RECOMENDADO</div>
-                <div class="promo-tag" data-i18n="promo-label">¡SUPER PROMO -20%!</div>
+                <span class="promo-tag" data-i18n="promo-label-card">¡SUPER PROMO -20%!</span>
                 <h3 data-i18n="plan3-title">Plan Pro</h3>
                 <span class="old-price" id="old-p3">$900.000</span>
                 <div class="plan-price" id="price-p3"></div>
                 <ul class="plan-features" id="features-p3"></ul>
-                <div class="promo-deadline" data-i18n="promo-date">Válido hasta el 15 de Abril, 2026</div>
+                <div class="promo-deadline" data-i18n="promo-date">Oferta válida hasta el 15 de Abril, 2026</div>
                 <a href="https://wa.me/573105169501" class="btn btn-accent" data-i18n="plan-btn">Solicitar Ahora</a>
             </div>
 
             <div class="plan-card">
-                <div class="promo-tag" data-i18n="promo-label">¡OFERTA -20%!</div>
+                <span class="promo-tag" data-i18n="promo-label-card">¡OFERTA -20%!</span>
                 <h3 data-i18n="plan2-title">Plan Estándar</h3>
                 <span class="old-price" id="old-p2">$700.000</span>
                 <div class="plan-price" id="price-p2"></div>
                 <ul class="plan-features" id="features-p2"></ul>
-                <div class="promo-deadline" data-i18n="promo-date">Válido hasta el 15 de Abril, 2026</div>
+                <div class="promo-deadline" data-i18n="promo-date">Oferta válida hasta el 15 de Abril, 2026</div>
                 <a href="https://wa.me/573105169501" class="btn btn-main" data-i18n="plan-btn">Solicitar</a>
             </div>
         </div>
@@ -204,26 +218,10 @@
     <section class="benefits reveal">
         <h2 class="section-title" data-i18n="benefits-title">¿Por qué <span>Elegirnos?</span></h2>
         <div class="benefits-grid">
-            <div class="benefit-card">
-                <span>🗓️</span>
-                <h3 data-i18n="ben-1">Agenda Virtual</h3>
-                <p style="font-size: 0.9rem; color: var(--text-muted);" data-i18n="ben-1-d">Tus clientes agendan citas mientras tú descansas.</p>
-            </div>
-            <div class="benefit-card">
-                <span>💎</span>
-                <h3 data-i18n="ben-2">Diseño Premium</h3>
-                <p style="font-size: 0.9rem; color: var(--text-muted);" data-i18n="ben-2-d">Estética futurista que transmite confianza total.</p>
-            </div>
-            <div class="benefit-card">
-                <span>🚀</span>
-                <h3 data-i18n="ben-3">Entrega Veloz</h3>
-                <p style="font-size: 0.9rem; color: var(--text-muted);" data-i18n="ben-3-d">Digitalizamos tu negocio en tiempo récord.</p>
-            </div>
-            <div class="benefit-card">
-                <span>🔥</span>
-                <h3 data-i18n="ben-4">Conversión Real</h3>
-                <p style="font-size: 0.9rem; color: var(--text-muted);" data-i18n="ben-4-d">No solo es una web bonita, es una máquina de ventas.</p>
-            </div>
+            <div class="benefit-card"><span>🗓️</span><h3 data-i18n="ben-1">Agenda Virtual</h3><p data-i18n="ben-1-d">Tus clientes agendan citas mientras tú descansas.</p></div>
+            <div class="benefit-card"><span>💎</span><h3 data-i18n="ben-2">Diseño Premium</h3><p data-i18n="ben-2-d">Estética futurista que transmite confianza total.</p></div>
+            <div class="benefit-card"><span>🚀</span><h3 data-i18n="ben-3">Entrega Veloz</h3><p data-i18n="ben-3-d">Digitalizamos tu negocio en tiempo récord.</p></div>
+            <div class="benefit-card"><span>🔥</span><h3 data-i18n="ben-4">Conversión Real</h3><p data-i18n="ben-4-d">No solo es una web bonita, es una máquina de ventas.</p></div>
         </div>
     </section>
 
@@ -240,105 +238,44 @@
     <footer class="reveal">
         <div class="footer-content">
             <div class="footer-logo">Kirev <span>Digital Agency</span></div>
-            <div class="footer-socials">
-                <a href="https://instagram.com/kirev.digital" target="_blank" class="social-link">
-                    <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" class="social-icon" alt="Instagram">
-                    Instagram
-                </a>
-                <a href="https://wa.me/573105169501" target="_blank" class="social-link">
-                    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" class="social-icon" alt="WhatsApp">
-                    WhatsApp
-                </a>
-            </div>
-            <div class="copyright">
-                &copy; 2024 Kirev Digital Agency. <span data-i18n="footer-rights">Todos los derechos reservados.</span>
-            </div>
+            <div class="copyright">&copy; 2024 Kirev Digital Agency. <span data-i18n="footer-rights">Todos los derechos reservados.</span></div>
         </div>
     </footer>
 
     <script>
         const translations = {
             es: {
-                "agenda-live": "AGENDA VIRTUAL ACTIVA",
-                "hero-title": "Tu negocio con agenda llena, todos los días",
-                "hero-subtitle": "Creamos páginas web que generan citas por ti 24/7",
-                "hero-btn": "Solicitar mi página ahora",
-                "plans-title": "Nuestros <span>Planes</span>",
-                "plan1-title": "Plan Básico",
-                "plan2-title": "Plan Estándar",
-                "plan3-title": "Plan Pro",
-                "plan-badge": "MÁS RECOMENDADO",
-                "plan-btn": "Solicitar",
-                "promo-label": "¡OFERTA ESPECIAL -20%!",
-                "promo-date": "Promo válida hasta el 15 de Abril de 2026",
-                "agenda-title": "Mira cómo funciona tu agenda online",
-                "benefits-title": "¿Por qué <span>Elegirnos?</span>",
-                "ben-1": "Agenda Virtual", "ben-1-d": "Tus clientes agendan citas mientras tú descansas.",
-                "ben-2": "Diseño Premium", "ben-2-d": "Estética futurista que transmite confianza total.",
-                "ben-3": "Entrega Veloz", "ben-3-d": "Digitalizamos tu negocio en tiempo récord.",
-                "ben-4": "Conversión Real", "ben-4-d": "No solo es una web bonita, es una máquina de ventas.",
-                "cta-title": "¿Listo para escalar tu negocio?",
-                "cta-btn": "Hablar por WhatsApp",
-                "footer-rights": "Todos los derechos reservados.",
-                "currency": "COP",
-                "prices": [500000, 700000, 900000], // Valores base
-                "p1-list": [["1 año hosting + dominio", true], ["Agenda de citas básica", true], ["Elegir entre 2 plantillas", true], ["Diseño Responsive", true], ["Entrega: 10 días", true], ["Estructura SEO avanzada", false], ["Diseño enfocado en conversión", false], ["Soporte Prioritario", false]],
-                "p2-list": [["1 año hosting + dominio", true], ["Agenda de citas estándar", true], ["Elegir entre 5 plantillas", true], ["Diseño Responsive", true], ["Entrega: 10 días", true], ["Estructura visual mejorada", true], ["Diseño enfocado en conversión", false], ["Soporte Prioritario", false]],
-                "p3-list": [["1 año hosting + dominio", true], ["Agenda de citas Premium", true], ["Elegir entre 8 plantillas", true], ["Diseño Responsive UX/UI", true], ["Entrega: 3 a 5 días", true], ["Estructura SEO avanzada", true], ["Diseño enfocado en conversión", true], ["Soporte Prioritario 6 meses", true]]
+                "agenda-live": "AGENDA VIRTUAL ACTIVA", "hero-title": "Tu negocio con agenda llena, todos los días", "hero-subtitle": "Creamos páginas web que generan citas por ti 24/7", "hero-btn": "Solicitar mi página ahora",
+                "promo-label": "OFERTA ESPECIAL POR TIEMPO LIMITADO", "days": "Días", "hours": "Horas", "mins": "Mins", "secs": "Segs",
+                "plans-title": "Nuestros <span>Planes</span>", "plan1-title": "Plan Básico", "plan2-title": "Plan Estándar", "plan3-title": "Plan Pro", "plan-badge": "MÁS RECOMENDADO", "plan-btn": "Solicitar", "promo-label-card": "¡OFERTA ESPECIAL -20%!", "promo-date": "Oferta válida hasta el 15 de Abril de 2026",
+                "agenda-title": "Mira cómo funciona tu agenda online", "benefits-title": "¿Por qué <span>Elegirnos?</span>", "ben-1": "Agenda Virtual", "ben-1-d": "Tus clientes agendan citas mientras tú descansas.", "ben-2": "Diseño Premium", "ben-2-d": "Estética futurista que transmite confianza total.", "ben-3": "Entrega Veloz", "ben-3-d": "Digitalizamos tu negocio en tiempo récord.", "ben-4": "Conversión Real", "ben-4-d": "No solo es una web bonita, es una máquina de ventas.",
+                "cta-title": "¿Listo para escalar tu negocio?", "cta-btn": "Hablar por WhatsApp", "footer-rights": "Todos los derechos reservados.",
+                "currency": "COP", "prices": [500000, 700000, 900000],
+                "p1-list": [["1 año hosting + dominio", true], ["Agenda de citas básica", true], ["8 plantillas a elección", true], ["Diseño Responsive", true], ["Entrega: 10 días", true], ["Soporte técnico (1 mes)", true]],
+                "p2-list": [["1 año hosting + dominio", true], ["Agenda de citas estándar", true], ["8 plantillas a elección", true], ["Diseño Responsive", true], ["Entrega: 10 días", true], ["Soporte técnico (1 mes)", true], ["Estructura visual mejorada", true]],
+                "p3-list": [["1 año hosting + dominio", true], ["Agenda de citas Premium", true], ["8 plantillas + 3 Premium", true], ["Multilenguaje integrado", true], ["Tema Claro/Oscuro", true], ["Entrega: 3 a 5 días", true], ["Soporte Prioritario (6 meses)", true], ["Diseño enfocado en conversión", true]]
             },
             en: {
-                "agenda-live": "BOOKING SYSTEM ACTIVE",
-                "hero-title": "Your business with a full schedule, every day",
-                "hero-subtitle": "We create websites that generate appointments for you 24/7",
-                "hero-btn": "Request my website now",
-                "plans-title": "Our <span>Plans</span>",
-                "plan1-title": "Basic Plan",
-                "plan2-title": "Standard Plan",
-                "plan3-title": "Pro Plan",
-                "plan-badge": "MOST RECOMMENDED",
-                "plan-btn": "Request",
-                "promo-label": "LIMITED OFFER -20%!",
-                "promo-date": "Promo valid until April 15, 2026",
-                "agenda-title": "See how your online booking works",
-                "benefits-title": "Why <span>Choose Us?</span>",
-                "ben-1": "Virtual Booking", "ben-1-d": "Your clients book appointments while you sleep.",
-                "ben-2": "Premium Design", "ben-2-d": "Futuristic aesthetics that transmit total trust.",
-                "ben-3": "Fast Delivery", "ben-3-d": "We digitize your business in record time.",
-                "ben-4": "Real Conversion", "ben-4-d": "Not just a pretty site, but a sales machine.",
-                "cta-title": "Ready to scale your business?",
-                "cta-btn": "Chat on WhatsApp",
-                "footer-rights": "All rights reserved.",
+                "agenda-live": "BOOKING SYSTEM ACTIVE", "hero-title": "Your business with a full schedule, every day", "hero-subtitle": "We create websites that generate appointments for you 24/7", "hero-btn": "Request my website now",
+                "promo-label": "LIMITED TIME SPECIAL OFFER", "days": "Days", "hours": "Hours", "mins": "Mins", "secs": "Secs",
+                "plans-title": "Our <span>Plans</span>", "plan1-title": "Basic Plan", "plan2-title": "Standard Plan", "plan3-title": "Pro Plan", "plan-badge": "MOST RECOMMENDED", "plan-btn": "Request", "promo-label-card": "SPECIAL OFFER -20%!", "promo-date": "Offer valid until April 15, 2026",
+                "agenda-title": "See how your online booking works", "benefits-title": "Why <span>Choose Us?</span>", "ben-1": "Virtual Booking", "ben-1-d": "Your clients book appointments while you sleep.", "ben-2": "Premium Design", "ben-2-d": "Futuristic aesthetics that transmit total trust.", "ben-3": "Fast Delivery", "ben-3-d": "We digitize your business in record time.", "ben-4": "Real Conversion", "ben-4-d": "Not just a pretty site, but a sales machine.",
+                "cta-title": "Ready to scale your business?", "cta-btn": "Chat on WhatsApp", "footer-rights": "All rights reserved.",
                 "currency": "USD",
-                "p1-list": [["1 year hosting + domain", true], ["Basic booking system", true], ["Choose from 2 templates", true], ["Responsive Design", true], ["Delivery: 10 days", true], ["Advanced SEO structure", false], ["Conversion-focused design", false], ["Priority Support", false]],
-                "p2-list": [["1 year hosting + domain", true], ["Standard booking system", true], ["Choose from 5 templates", true], ["Responsive Design", true], ["Delivery: 10 days", true], ["Improved visual structure", true], ["Conversion-focused design", false], ["Priority Support", false]],
-                "p3-list": [["1 year hosting + domain", true], ["Premium booking system", true], ["Choose from 8 templates", true], ["Responsive UX/UI Design", true], ["Delivery: 3-5 days", true], ["Advanced SEO structure", true], ["Conversion-focused design", true], ["6 months Priority Support", true]]
+                "p1-list": [["1 year hosting + domain", true], ["Basic booking system", true], ["8 templates to choose", true], ["Responsive Design", true], ["Delivery: 10 days", true], ["Tech support (1 month)", true]],
+                "p2-list": [["1 year hosting + domain", true], ["Standard booking system", true], ["8 templates to choose", true], ["Responsive Design", true], ["Delivery: 10 days", true], ["Tech support (1 month)", true], ["Improved visual structure", true]],
+                "p3-list": [["1 year hosting + domain", true], ["Premium booking system", true], ["8 templates + 3 Premium", true], ["Integrated Multilanguage", true], ["Light/Dark Theme", true], ["Delivery: 3-5 days", true], ["Priority Support (6 months)", true], ["Conversion-focused design", true]]
             },
             pt: {
-                "agenda-live": "AGENDA VIRTUAL ATIVA",
-                "hero-title": "Seu negócio com a agenda cheia, todos os dias",
-                "hero-subtitle": "Criamos sites que geram agendamentos para você 24 horas por dia, 7 dias por semana",
-                "hero-btn": "Solicitar meu site agora",
-                "plans-title": "Nossos <span>Planos</span>",
-                "plan1-title": "Plano Básico",
-                "plan2-title": "Plano Padrão",
-                "plan3-title": "Plano Pro",
-                "plan-badge": "MAIS RECOMENDADO",
-                "plan-btn": "Solicitar",
-                "promo-label": "OFERTA ESPECIAL -20%!",
-                "promo-date": "Válido até 15 de Abril de 2026",
-                "agenda-title": "Veja como funciona o agendamento online",
-                "benefits-title": "Por que <span>Escolher-nos?</span>",
-                "ben-1": "Agenda Virtual", "ben-1-d": "Seus clientes agendam enquanto você descansa.",
-                "ben-2": "Design Premium", "ben-2-d": "Estética futurista que transmite confiança total.",
-                "ben-3": "Entrega Veloz", "ben-3-d": "Digitalizamos seu negocio em tempo recorde.",
-                "ben-4": "Conversão Real", "ben-4-d": "Não é apenas um site bonito, é uma máquina de vendas.",
-                "cta-title": "Pronto para escalar seu negócio?",
-                "cta-btn": "Falar no WhatsApp",
-                "footer-rights": "Todos os direitos reservados.",
+                "agenda-live": "AGENDA VIRTUAL ATIVA", "hero-title": "Seu negócio com a agenda cheia, todos os dias", "hero-subtitle": "Criamos sites que geram agendamentos para você 24/7", "hero-btn": "Solicitar meu site agora",
+                "promo-label": "OFERTA ESPECIAL POR TEMPO LIMITADO", "days": "Dias", "hours": "Horas", "mins": "Mins", "secs": "Segs",
+                "plans-title": "Nossos <span>Planos</span>", "plan1-title": "Plano Básico", "plan2-title": "Plano Padrão", "plan3-title": "Plano Pro", "plan-badge": "MAIS RECOMENDADO", "plan-btn": "Solicitar", "promo-label-card": "OFERTA ESPECIAL -20%!", "promo-date": "Válido até 15 de Abril de 2026",
+                "agenda-title": "Veja como funciona o agendamento online", "benefits-title": "Por que <span>Escolher-nos?</span>", "ben-1": "Agenda Virtual", "ben-1-d": "Seus clientes agendam enquanto você descansa.", "ben-2": "Design Premium", "ben-2-d": "Estética futurista que transmite confiança total.", "ben-3": "Entrega Veloz", "ben-3-d": "Digitalizamos seu negocio em tempo recorde.", "ben-4": "Conversão Real", "ben-4-d": "Não é apenas um site bonito, é uma máquina de vendas.",
+                "cta-title": "Pronto para escalar seu negócio?", "cta-btn": "Falar no WhatsApp", "footer-rights": "Todos os derechos reservados.",
                 "currency": "USD",
-                "p1-list": [["1 ano hospedagem + domínio", true], ["Agenda básica", true], ["Escolha entre 2 templates", true], ["Design Responsivo", true], ["Entrega: 10 dias", true], ["Estrutura SEO avançada", false], ["Design focado em conversão", false], ["Suporte Prioritário", false]],
-                "p2-list": [["1 ano hospedagem + domínio", true], ["Agenda padrão", true], ["Escolha entre 5 templates", true], ["Design Responsivo", true], ["Entrega: 10 dias", true], ["Melhor estrutura visual", true], ["Design focado em conversão", false], ["Suporte Prioritário", false]],
-                "p3-list": [["1 ano hospedagem + domínio", true], ["Agenda Premium", true], ["Escolha entre 8 templates", true], ["Design Responsivo UX/UI", true], ["Entrega: 3 a 5 dias", true], ["Estrutura SEO avançada", true], ["Design focado em conversão", true], ["Suporte Prioritário 6 meses", true]]
+                "p1-list": [["1 ano hospedagem + domínio", true], ["Agenda básica", true], ["8 modelos de escolha", true], ["Design Responsivo", true], ["Entrega: 10 dias", true], ["Suporte (1 mês)", true]],
+                "p2-list": [["1 ano hospedagem + domínio", true], ["Agenda padrão", true], ["8 modelos de escolha", true], ["Design Responsivo", true], ["Entrega: 10 dias", true], ["Suporte (1 mês)", true], ["Melhor estrutura visual", true]],
+                "p3-list": [["1 ano hospedagem + domínio", true], ["Agenda Premium", true], ["8 modelos + 3 Premium", true], ["Multilingue integrado", true], ["Tema Claro/Escuro", true], ["Entrega: 3-5 dias", true], ["Suporte Prioritário (6 meses)", true], ["Design focado em conversão", true]]
             }
         };
 
@@ -357,70 +294,61 @@
         function changeLanguage(lang) {
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
-                if (translations[lang] && translations[lang][key]) {
-                    el.innerHTML = translations[lang][key];
-                }
+                if (translations[lang] && translations[lang][key]) { el.innerHTML = translations[lang][key]; }
             });
-
             renderList('features-p1', translations[lang]["p1-list"]);
             renderList('features-p2', translations[lang]["p2-list"]);
             renderList('features-p3', translations[lang]["p3-list"]);
 
             const currency = translations[lang].currency;
             const exchangeRate = 4000; 
-
-            // Aplicamos lógica de precios
             translations["es"].prices.forEach((basePrice, index) => {
-                const priceIds = [1, 2, 3]; // Básico, Estándar, Pro
-                const currentId = priceIds[index];
+                const currentId = [1, 2, 3][index];
                 const priceEl = document.getElementById(`price-p${currentId}`);
                 const oldPriceEl = document.getElementById(`old-p${currentId}`);
-                
-                // Aplicar descuento del 20% a Estándar (index 1) y Pro (index 2)
-                let finalPrice = basePrice;
-                if (index === 1 || index === 2) {
-                    finalPrice = basePrice * 0.8;
-                }
+                let finalPrice = (index === 1 || index === 2) ? basePrice * 0.8 : basePrice;
 
                 if (priceEl) {
                     if (currency === "USD") {
-                        const usdValue = Math.round(finalPrice / exchangeRate);
-                        const oldUsdValue = Math.round(basePrice / exchangeRate);
-                        priceEl.innerText = `$${usdValue} USD`;
-                        priceEl.style.color = "var(--accent)";
-                        if (oldPriceEl) oldPriceEl.innerText = `$${oldUsdValue} USD`;
+                        priceEl.innerText = `$${Math.round(finalPrice / exchangeRate)} USD`;
+                        if (oldPriceEl) oldPriceEl.innerText = `$${Math.round(basePrice / exchangeRate)} USD`;
                     } else {
                         priceEl.innerText = `$${finalPrice.toLocaleString()} COP`;
-                        priceEl.style.color = "#fff";
                         if (oldPriceEl) oldPriceEl.innerText = `$${basePrice.toLocaleString()} COP`;
                     }
                 }
             });
-
             document.documentElement.lang = lang;
         }
 
-        window.addEventListener('DOMContentLoaded', () => {
-            changeLanguage('es');
+        // Cuenta atrás
+        function startCountdown() {
+            const target = new Date("April 15, 2026 00:00:00").getTime();
+            setInterval(() => {
+                const now = new Date().getTime();
+                const diff = target - now;
+                if (diff < 0) return;
+                document.getElementById('days').innerText = Math.floor(diff / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
+                document.getElementById('hours').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
+                document.getElementById('minutes').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+                document.getElementById('seconds').innerText = Math.floor((diff % (1000 * 60)) / 1000).toString().padStart(2, '0');
+            }, 1000);
+        }
+
+        window.addEventListener('DOMContentLoaded', () => { 
+            changeLanguage('es'); 
+            startCountdown();
         });
 
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('active');
-            });
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
         }, { threshold: 0.15 });
-
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
         window.onscroll = () => {
             const upBtn = document.getElementById('btn-up');
-            if (window.scrollY > 500) {
-                upBtn.classList.add('visible');
-            } else {
-                upBtn.classList.remove('visible');
-            }
+            upBtn.classList.toggle('visible', window.scrollY > 500);
         };
-        
     </script>
 </body>
 </html>
